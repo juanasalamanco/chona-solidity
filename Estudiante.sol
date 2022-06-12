@@ -12,6 +12,7 @@ contract Estudiante{
         _nombre = nombre_;
         _apellido = apellido_;
         _curso = curso_;
+        _docente = msg.sender;
     }
 
     function apellido() public view returns (string memory){
@@ -19,7 +20,7 @@ contract Estudiante{
     }
     /*
     function nombre_completo() public view returns (string memory){
-        return _nombre; _apellido;
+        
     }
     */
     function curso()public view returns (string memory){
@@ -30,17 +31,31 @@ contract Estudiante{
         require(msg.sender == _docente, "Solo el docente puede cambiar las notas");
         _notas_materias[materia] = nota;
     }
-    /*
-    function nota_materia(string memory materia){
-        //devuelve la nota del estudiante dada una materia
+    
+    function nota_materia()public view returns(string memory materia) {
+        _notas_materias[materia];
     }
-
-    function aprobo(string memory materia){
-        //devuelve true solo si el alumno esta aprobado en la materia. La materia se aprueba con 60/10 o mas
+    
+    function aprobo()public view returns(string memory materia) {
+        uint nota = _notas_materias[materia];
+        if(nota >= 60 && nota <= 100){
+            true;
+        }
+        else{
+            false;
+        }
     }
-
-    function promedio(){
-        //devuelve un entero con el promedio
+    
+    function promedio()public view returns(uint){
+        uint total = 0;
+        uint tfinal;
+        uint numMaterias;
+        for(uint i = 0; i < _notas_materias; i++){
+            total += _notas_materias;
+            numMaterias = i;
+        }
+        tfinal = total/numMaterias;
+        return tfinal;
     }
-    */
+    
 }
